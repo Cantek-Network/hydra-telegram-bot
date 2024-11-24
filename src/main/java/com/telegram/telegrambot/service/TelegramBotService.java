@@ -1,8 +1,6 @@
 package com.telegram.telegrambot.service;
 
-import com.telegram.telegrambot.TelegramBotApplication;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
-import org.telegram.telegrambots.meta.api.methods.ParseMode;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.objects.InputFile;
@@ -12,11 +10,7 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMa
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
-import javax.swing.text.html.HTML;
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,10 +19,7 @@ public class TelegramBotService extends TelegramLongPollingBot {
     public void onUpdateReceived(Update update) {
         if (update.hasMessage()){
             Message message = update.getMessage();
-            String sender = message.getFrom().getUserName();
-            String senderId = message.getFrom().getId().toString();
             String channelId = message.getChat().getId().toString();
-            String channelType = message.getChat().getType();
             SendMessage sendMessage = new SendMessage();
             sendMessage.setChatId(channelId);
             SendPhoto sendPhoto = new SendPhoto();
