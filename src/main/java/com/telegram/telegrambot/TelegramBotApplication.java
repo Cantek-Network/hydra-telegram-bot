@@ -11,8 +11,6 @@ import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 public class TelegramBotApplication {
 
     public static void main(String[] args) throws TelegramApiException {
-        TelegramBotsApi telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
-        telegramBotsApi.registerBot(new TelegramBotService());
         SpringApplication.run(TelegramBotApplication.class, args);
     }
 
