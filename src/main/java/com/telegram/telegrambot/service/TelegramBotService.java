@@ -32,6 +32,21 @@ public class TelegramBotService extends TelegramLongPollingBot {
             sendMessage.setChatId(chatId);
             if (text.equalsIgnoreCase(Const.Commands.START)){
                 handlerBaseCommand.processStartCommand(this, chatId);
+            } else if (text.equalsIgnoreCase(Const.Commands.HELP)) {
+                String helpMessage = "All commands are available in this chat:\n" +
+                        "/start: Start bot\n" +
+                        "/openwallet: Open wallet \n" +
+                        "/login: Go to login\n" +
+                        "/register: Go to register\n" +
+                        "/send: Go to transfer ada\n" +
+                        "/hydratransfer: Go to hydra transfer\n" +
+                        "/games: Go to list game\n" +
+                        "/nfthistory:  Go to nft histories tab\n" +
+                        "/tokenhistory: Go to token histories tab\n" +
+                        "/history: Go to histories tab\n" +
+                        "/walletsetting:  Go to settings\n" +
+                        "/help: List command function\n" +
+                        "/community: Join the community";
             } else {
                 for (TeleAppUrl teleAppUrl : teleAppUrls){
                     if (text.equalsIgnoreCase(teleAppUrl.getCommand())){
