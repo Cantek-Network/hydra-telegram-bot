@@ -33,20 +33,27 @@ public class TelegramBotService extends TelegramLongPollingBot {
             if (text.equalsIgnoreCase(Const.Commands.START)){
                 handlerBaseCommand.processStartCommand(this, chatId);
             } else if (text.equalsIgnoreCase(Const.Commands.HELP)) {
-                String helpMessage = "All commands are available in this chat:\n" +
-                        "/start: Start bot\n" +
-                        "/openwallet: Open wallet \n" +
-                        "/login: Go to login\n" +
-                        "/register: Go to register\n" +
-                        "/send: Go to transfer ada\n" +
-                        "/hydratransfer: Go to hydra transfer\n" +
-                        "/games: Go to list game\n" +
-                        "/nfthistory:  Go to nft histories tab\n" +
-                        "/tokenhistory: Go to token histories tab\n" +
-                        "/history: Go to histories tab\n" +
-                        "/walletsetting:  Go to settings\n" +
-                        "/help: List command function\n" +
-                        "/community: Join the community";
+                String helpMessage = """
+                        All commands are available in this chat:\s
+                        /start: Start bot
+                        /openwallet: Open wallet\s
+                        /login: Go to login
+                        /register: Go to register
+                        /send: Go to transfer ada
+                        /hydratransfer: Go to hydra transfer
+                        /games: Go to list game
+                        /nfthistory:  Go to nft histories tab
+                        /tokenhistory: Go to token histories tab
+                        /history: Go to histories tab
+                        /walletsetting:  Go to settings
+                        /help: List command function
+                        /community: Join the community""";
+                sendMessage.setText(helpMessage);
+                try {
+                    this.execute(sendMessage);
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
             } else {
                 for (TeleAppUrl teleAppUrl : teleAppUrls){
                     if (text.equalsIgnoreCase(teleAppUrl.getCommand())){
