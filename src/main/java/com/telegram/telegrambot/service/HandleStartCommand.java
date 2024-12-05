@@ -33,7 +33,7 @@ public class HandleStartCommand {
 
         InlineKeyboardButton communityButton = new InlineKeyboardButton();
         communityButton.setText("Join the community");
-        String url = "https://www.youtube.com/";
+        String url = "https://www.youtube.com/watch?v=PhnIxleNDWA";
         communityButton.setUrl(url);
 
         buttons.add(communityButton);
