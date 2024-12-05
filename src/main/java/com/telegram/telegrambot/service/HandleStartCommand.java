@@ -7,11 +7,9 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMa
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
-import java.io.*;
-import java.net.URL;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 @Service
 public class HandleStartCommand {
@@ -26,12 +24,9 @@ public class HandleStartCommand {
                 "Built to bring development to Dapps and Gamefi on Cardano";
         sendPhoto.setChatId(chatId);
         sendPhoto.setCaption(getStarted);
-        URL resourceUrl = getClass().getClassLoader().getResource("hydra_banner.png");
-        if (resourceUrl != null) {
-            File file = new File(resourceUrl.getFile());
-            sendPhoto.setPhoto(new InputFile(file, "hyra_banner"));
-
-        }
+        String imagePath = "/home/cantek/workspaces/projects/backend/configs/hydra.jpg";
+        File imageFile = new File(imagePath);
+        sendPhoto.setPhoto(new InputFile(imageFile, "hyra_banner"));
         InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
         List<List<InlineKeyboardButton>> listInlineKeyboardButton = new ArrayList<>();
         List<InlineKeyboardButton> buttons = new ArrayList<>();
