@@ -1,5 +1,6 @@
 package com.telegram.telegrambot.utils;
 
+import com.telegram.telegrambot.common.Const;
 import com.telegram.telegrambot.entity.TeleAppUrl;
 import com.telegram.telegrambot.entity.TeleBot;
 import com.telegram.telegrambot.repository.TeleAppUrlRepository;
@@ -16,15 +17,10 @@ import java.util.List;
 
 @Component
 public class TeleBotUtil {
-    private HandlerBaseCommand handlerBaseCommand;
-    private TeleBotRepository teleBotRepository;
-    private TeleAppUrlRepository teleAppUrlRepository;
-    public TeleBotUtil(TeleBotRepository teleBotRepository, HandlerBaseCommand handlerBaseCommand, TeleAppUrlRepository teleAppUrlRepository) {
-        this.teleBotRepository = teleBotRepository;
-        this.handlerBaseCommand = handlerBaseCommand;
-        this.teleAppUrlRepository = teleAppUrlRepository;
 
-        TeleBot teleBot = teleBotRepository.findTeleBotByBotName("HydraDemo");
+    public TeleBotUtil(TeleBotRepository teleBotRepository, HandlerBaseCommand handlerBaseCommand, TeleAppUrlRepository teleAppUrlRepository) {
+
+        TeleBot teleBot = teleBotRepository.findTeleBotByStatus(Const.Status.ACTIVE);
         List<TeleAppUrl> teleAppUrls = teleAppUrlRepository.findAll();
         TelegramBotService telegramBotService = new TelegramBotService(handlerBaseCommand, teleBot, teleAppUrls);
         try {

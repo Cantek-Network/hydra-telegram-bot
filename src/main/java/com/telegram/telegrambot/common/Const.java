@@ -2,6 +2,7 @@ package com.telegram.telegrambot.common;
 
 public class Const {
     public static final String BOT_NAME = "HydraDemo";
+    public static final String PREFIX = "?start_app=";
 
     public static class Commands {
         public static final String START = "/start";
@@ -17,5 +18,9 @@ public class Const {
         public static final String WALLET_SETTING = "/walletsetting";
         public static final String HELP = "/help";
         public static final String COMMUNITY = "/community";
+    }
+
+    public static class Status {
+        public static final String ACTIVE = "active";
     }
 }

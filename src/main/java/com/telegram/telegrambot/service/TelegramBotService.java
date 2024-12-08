@@ -31,7 +31,7 @@ public class TelegramBotService extends TelegramLongPollingBot {
             SendMessage sendMessage = new SendMessage();
             sendMessage.setChatId(chatId);
             if (text.equalsIgnoreCase(Const.Commands.START)){
-                handlerBaseCommand.processStartCommand(this, chatId);
+                handlerBaseCommand.processStartCommand(this, telegramBot, chatId);
             } else if (text.equalsIgnoreCase(Const.Commands.HELP)) {
                 String helpMessage = """
                         All commands are available in this chat:\s
@@ -57,7 +57,12 @@ public class TelegramBotService extends TelegramLongPollingBot {
             } else {
                 for (TeleAppUrl teleAppUrl : teleAppUrls){
                     if (text.equalsIgnoreCase(teleAppUrl.getCommand())){
-                        String commandMessage = "You can open " + teleAppUrl.getDescription() + " using this link " + teleAppUrl.getUrl();
+                        String commandMessage = "You can open " + teleAppUrl.getDescription() + " using this link ";
+                        if (text.equalsIgnoreCase(Const.Commands.OPEN_WALLET)){
+                            commandMessage = commandMessage + telegramBot.getMiniAppUrl();
+                        } else {
+                            commandMessage = telegramBot.getMiniAppUrl() + Const.PREFIX + teleAppUrl.getUrl();
+                        }
                         sendMessage.setText(commandMessage);
                         try{
                             this.execute(sendMessage);

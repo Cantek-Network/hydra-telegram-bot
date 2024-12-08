@@ -22,6 +22,8 @@ public class TeleBot {
     private String about;
     private String token;
     private String status;
+    private String miniAppUrl;
+    private String communityLink;
     private Timestamp createdAt;
     private Timestamp updatedAt;
 }
