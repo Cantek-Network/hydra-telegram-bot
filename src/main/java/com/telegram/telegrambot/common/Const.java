@@ -2,7 +2,7 @@ package com.telegram.telegrambot.common;
 
 public class Const {
     public static final String BOT_NAME = "HydraDemo";
-    public static final String PREFIX = "?start_app=";
+    public static final String PREFIX = "?startapp=";
 
     public static class Commands {
         public static final String START = "/start";
