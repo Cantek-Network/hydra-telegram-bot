@@ -57,12 +57,7 @@ public class TelegramBotService extends TelegramLongPollingBot {
             } else {
                 for (TeleAppUrl teleAppUrl : teleAppUrls){
                     if (text.equalsIgnoreCase(teleAppUrl.getCommand())){
-                        String commandMessage = "You can open " + teleAppUrl.getDescription() + " using this link ";
-                        if (text.equalsIgnoreCase(Const.Commands.OPEN_WALLET)){
-                            commandMessage = commandMessage + telegramBot.getMiniAppUrl();
-                        } else {
-                            commandMessage = telegramBot.getMiniAppUrl() + Const.PREFIX + teleAppUrl.getUrl();
-                        }
+                        String commandMessage = getString(teleAppUrl, text);
                         sendMessage.setText(commandMessage);
                         try{
                             this.execute(sendMessage);
@@ -73,6 +68,16 @@ public class TelegramBotService extends TelegramLongPollingBot {
                 }
             }
         }
+    }
+
+    private String getString(TeleAppUrl teleAppUrl, String text) {
+        String commandMessage;
+        if (text.equalsIgnoreCase(Const.Commands.OPEN_WALLET)){
+            commandMessage = "You can open " + teleAppUrl.getDescription() + " using this link " + telegramBot.getMiniAppUrl();
+        } else {
+            commandMessage = "You can open " + teleAppUrl.getDescription() + " using this link " + telegramBot.getMiniAppUrl() + Const.PREFIX + teleAppUrl.getUrl();
+        }
+        return commandMessage;
     }
 
     @Override
