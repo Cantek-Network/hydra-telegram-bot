@@ -20,7 +20,7 @@ public class TeleBotUtil {
 
     public TeleBotUtil(TeleBotRepository teleBotRepository, HandlerBaseCommand handlerBaseCommand, TeleAppUrlRepository teleAppUrlRepository) {
 
-        TeleBot teleBot = teleBotRepository.findTeleBotByStatus(Const.Status.ACTIVE);
+        TeleBot teleBot = teleBotRepository.findFirstByStatus(Const.Status.ACTIVE);
         List<TeleAppUrl> teleAppUrls = teleAppUrlRepository.findAll();
         TelegramBotService telegramBotService = new TelegramBotService(handlerBaseCommand, teleBot, teleAppUrls);
         try {

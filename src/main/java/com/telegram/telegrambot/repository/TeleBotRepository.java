@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TeleBotRepository extends JpaRepository<TeleBot, Long> {
-    TeleBot findTeleBotByStatus(String status);
+    TeleBot findFirstByStatus(String status);
 }
