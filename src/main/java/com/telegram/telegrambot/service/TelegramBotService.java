@@ -73,9 +73,11 @@ public class TelegramBotService extends TelegramLongPollingBot {
     private String getString(TeleAppUrl teleAppUrl, String text) {
         String commandMessage;
         if (text.equalsIgnoreCase(Const.Commands.OPEN_WALLET)){
-            commandMessage = "You can open " + teleAppUrl.getDescription() + " using this link " + telegramBot.getMiniAppUrl();
+            commandMessage = "You can open " + teleAppUrl.getDescription() + " via this link\n " + telegramBot.getMiniAppUrl();
+        } else if (text.equalsIgnoreCase(Const.Commands.COMMUNITY)){
+            commandMessage = "You can join our community via this link\n" + telegramBot.getCommunityLink();
         } else {
-            commandMessage = "You can open " + teleAppUrl.getDescription() + " using this link " + telegramBot.getMiniAppUrl() + Const.PREFIX + teleAppUrl.getUrl();
+            commandMessage = "You can open " + teleAppUrl.getDescription() + " via this link\n" + telegramBot.getMiniAppUrl() + Const.PREFIX + teleAppUrl.getUrl();
         }
         return commandMessage;
     }
